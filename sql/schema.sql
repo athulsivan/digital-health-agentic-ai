@@ -1,0 +1,32 @@
+CREATE TABLE IF NOT EXISTS events (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id TEXT NOT NULL,
+    ts DATETIME DEFAULT CURRENT_TIMESTAMP,
+    event_type TEXT NOT NULL,
+    payload_json TEXT
+);
+
+CREATE TABLE IF NOT EXISTS memories (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id TEXT NOT NULL,
+    ts DATETIME DEFAULT CURRENT_TIMESTAMP,
+    summary TEXT,
+    traits_json TEXT
+);
+
+CREATE TABLE IF NOT EXISTS interventions (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id TEXT NOT NULL,
+    ts DATETIME DEFAULT CURRENT_TIMESTAMP,
+    intervention_type TEXT,
+    rationale TEXT,
+    outcome TEXT
+);
+
+CREATE TABLE IF NOT EXISTS safety_escalations (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id TEXT NOT NULL,
+    ts DATETIME DEFAULT CURRENT_TIMESTAMP,
+    category TEXT,
+    action TEXT
+);
