@@ -1,22 +1,15 @@
 import requests
-from .config import settings
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+OLLAMA_HOST = os.getenv("OLLAMA_HOST", "http://localhost:11434")
+OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "llama3.2:3b")
 
 def generate(prompt: str, timeout_s: int = 120) -> str:
-    """
-    Generate text using Ollama's local HTTP API.
-    Keeps the interface tiny so the rest of the system stays model-agnostic.
-    """
-    if settings.model_backend != "ollama":
-        raise ValueError(f"Unsupported MODEL_BACKEND={settings.model_backend}")
-
-    url = f"{settings.ollama_host}/api/generate"
-    payload = {
-        "model": settings.ollama_model,
-        "prompt": prompt,
-        "stream": False,
-    }
-
+    url = f"{OLLAMA_HOST}/api/generate"
+    payload = {"model": OLLAMA_MODEL, "prompt": prompt, "stream": False}
     r = requests.post(url, json=payload, timeout=timeout_s)
     r.raise_for_status()
-    data = r.json()
-    return data.get("response", "").strip()
+    return r.json().get("response", "").strip()
