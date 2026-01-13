@@ -1,2 +1,1 @@
-# agentic-health-coach-demo
-Production-oriented demo of an agentic LLM-based health coaching system. Showcases tool-using workflows, memory management, safety and policy constraints, SQL-backed event logging, and a rigorous offline evaluation harness for agent behavior, consistency, and risk handling in digital care pathways.
+End-to-end demo of a local LLM-powered health analytics agent using open-source models (Ollama). The project generates synthetic patient time-series data, processes it via a Python agent pipeline, and produces structured risk and trend summaries—designed to illustrate agent workflows, evaluation readiness, and data-driven reasoning.
